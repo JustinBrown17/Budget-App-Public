@@ -3,7 +3,8 @@
 ## Currently in developement ##
 
 - More information will be released as developement progresses!
-`----------------------------------------------------------------`
+
+----------------------------------------------------------------
 
 ## find_pay_info.py ##
 
@@ -26,7 +27,8 @@ Future adds?:
 
 - Reference current date
 - Return remaining paychecks for the year
-`----------------------------------------------------------------`
+
+----------------------------------------------------------------
 
 ## Transform_Excel_Script ##
 
