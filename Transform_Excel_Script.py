@@ -9,17 +9,17 @@ sheet = workbook['Averages']
 is_valid_month_cell = 'E11'
 
 # Setup pointer locations to read into logic line
-info_cell_letter = 'I'
-info_cell_num = 63  
-end_info_cell_num = 66
+info_cell_letter = 'E'
+info_cell_num = 11  
+end_info_cell_num = 13
 
 # Setup Excel formula
 month_list = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 logic_line = '='
 
 # Cursor cell thats updated
-cursor_cell_letter = 'M'
-cursor_cell_num = info_cell_num # Same column number
+cursor_cell_letter = 'F'
+cursor_cell_num = info_cell_num - 1 # Same column number
 
 # While in range of cells to be updated
 while info_cell_num <= end_info_cell_num:
@@ -48,7 +48,7 @@ while info_cell_num <= end_info_cell_num:
 
             # At cursor paste full logic
             sheet[cursor_cell] = logic_line
-
+            print(logic_line + '\n')
             # Reset logic
             logic_line = '='
     
