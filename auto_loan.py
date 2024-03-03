@@ -1,44 +1,46 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
+from icecream import ic
+from helper_auto_loan import caclulate_final_payoff_date
+from ultilities import (
+    principal, interest_rate, start_date, loan_term_years, 
+    payment_periods, original_payoff_date,
+    one_time_payment, one_time_payment_month,
+    extra_monthly_payment, extra_payment_month,
+     addl_extra_payment, addl_extra_payment_month
+)
+
 
 def calculate_auto_loan():
     # Get user inputs
-    loan_amount = float(input("Enter the loan amount (principal): "))
-    interest_rate = float(input("Enter the annual interest rate (as a decimal): "))
+    """
+    principal = get_float_input("Enter the loan amount (principal): ")
+    interest_rate = get_float_input("Enter the annual interest rate (as a decimal): ")
     loan_term_years = int(input("Enter the loan term (in years): "))
-    one_time_payment = float(input("Enter any one-time extra payment (if applicable): "))
-    extra_payment = float(input("Enter the recurring extra payment (monthly, quarterly, or yearly): "))
-    extra_payment_start_date = input("Enter the start date for extra payments (YYYY-MM-DD): ")
-    start_date = input("Enter the start date of the loan (YYYY-MM-DD): ")
+    one_time_payment = get_float_input("Enter any one-time extra payment (if applicable): ")
+    extra_monthly_payment = get_float_input("Enter the recurring extra payment (monthly, quarterly, or yearly): ")
+    extra_monthly_payment_start_date = get_date_input("Enter the start date for extra payments (YYYY-MM-DD): ")
+    start_date = get_date_input("Enter the start date of the loan (YYYY-MM-DD): ")
+    """
 
-    # Convert interest rate to monthly rate
-    monthly_interest_rate = interest_rate / 12
-
-    # Calculate total number of periods (months)
-    num_periods = loan_term_years * 12
-
-    # Calculate monthly payment
-    numerator = loan_amount * monthly_interest_rate * (1 + monthly_interest_rate) ** num_periods
-    denominator = (1 + monthly_interest_rate) ** num_periods - 1
-    monthly_payment = numerator / denominator
-
-    # Calculate total payment with extras
-    total_payment = monthly_payment + one_time_payment + extra_payment
-
-    # Calculate payoff date without extra payments
-    original_payoff_date = datetime.strptime(start_date, "%Y-%m-%d") + timedelta(days=num_periods * 30)
-    original_payoff_date_str = original_payoff_date.strftime("%Y-%m-%d")
-
+    
     # Calculate payoff date with all extra payments
-    extra_periods = int((extra_payment_start_date - datetime.strptime(start_date, "%Y-%m-%d")).days / 30)
-    total_periods = num_periods + extra_periods
-    final_payoff_date = datetime.strptime(start_date, "%Y-%m-%d") + timedelta(days=total_periods * 30)
-    final_payoff_date_str = final_payoff_date.strftime("%Y-%m-%d")
+    total_loan_cost, months_to_payoff, cumulative_interest, last_payment_amount = caclulate_final_payoff_date(principal, interest_rate, payment_periods, extra_monthly_payment, extra_payment_month, addl_extra_payment, addl_extra_payment_month)
+    
+    # Calculate payoff date from total months to payoff
+    payoff_date = start_date + timedelta(days=months_to_payoff * 30)
+
+    # Build printable strings for dates
+    original_payoff_date_str = original_payoff_date.strftime("%Y-%m-%d")
+    final_payoff_date_str = payoff_date.strftime("%Y-%m-%d")
 
     # Display results
-    print(f"\nMonthly Payment: ${monthly_payment:.2f}")
-    print(f"Total Payment (including extras): ${total_payment:.2f}")
-    print(f"Original Payoff Date (without extras): {original_payoff_date_str}")
-    print(f"Payoff Date (with all extras): {final_payoff_date_str}")
+    print(f"Total Loan Cost (Including Interest): ${total_loan_cost:.2f}")
+    print(f"Total Interest Paid: ${cumulative_interest:.2f}")
+    print(f"Original Payoff Date: {original_payoff_date_str}")
+    print(f"Actual Payoff Date: {final_payoff_date_str}")
+    print(f"Last Payment Amount: ${last_payment_amount:.2f}")
+    print(f"Actual Months to Payoff: {months_to_payoff}")
+
 
 if __name__ == "__main__":
     calculate_auto_loan()
