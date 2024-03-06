@@ -122,8 +122,9 @@ def find_addl_payment_amount(current_month, loan_data):
         addl_payment += loan_data["Extra Payment Amount"]
         return addl_payment
     
-    # Payment with Add'l extra payments
+    # Payment with extra payments and Add'l extra payments
     else:
+        addl_payment += loan_data["Extra Payment Amount"]
         addl_payment += loan_data["Additional Extra Payment Amount"]
         return addl_payment
     

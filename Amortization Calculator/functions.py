@@ -97,7 +97,7 @@ def prompt_user():
         "Additional Extra Payment Amount" : addl_extra_payment,
         "Additional Extra Payment Start Date" : addl_extra_payment_start_date
     }
-    
+
     return user_data
 
 def auto_set_prompt():
@@ -115,11 +115,11 @@ def auto_set_prompt():
                           "Interest Rate" : 0.0418,
                         "Loan Term Years" : 6,
                         "Loan Start Date" : datetime.strptime("2022-01-20", "%Y-%m-%d"),
-                "One Time Payment Amount" : 1000,
+                "One Time Payment Amount" : 1350,
                  "One Time Payement Date" : datetime.strptime("2024-03-20", "%Y-%m-%d"),
                    "Extra Payment Amount" : 33,
                "Extra Payment Start Date" : datetime.strptime("2022-02-20", "%Y-%m-%d"),
-        "Additional Extra Payment Amount" : 40+33,
+        "Additional Extra Payment Amount" : 25,
     "Additional Extra Payment Start Date" : datetime.strptime("2024-03-20", "%Y-%m-%d"),
     }
 
