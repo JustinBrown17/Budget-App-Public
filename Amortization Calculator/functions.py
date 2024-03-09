@@ -46,7 +46,7 @@ def prompt_user():
     Returns:
     dict: With all the user data inputs
     """
-    user_data = {}
+    #user_data = {}
 
     # Get loan info
     principal = get_float_input("Enter the loan amount (principal): ")
@@ -80,9 +80,6 @@ def prompt_user():
         addl_extra_payment_start_date = get_date_input("Enter the start date for the additional extra payments (YYYY-MM-DD): ")
     else:
         addl_extra_payment_start_date = loan_start_date
-
-    # Adjust, adding original extra payment to make more sense to user
-    addl_extra_payment += extra_monthly_payment
 
     # Collect user data into dict
     user_data = {

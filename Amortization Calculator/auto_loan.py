@@ -14,8 +14,8 @@ from functions import prompt_user, auto_set_prompt
 def calculate_auto_loan():
     
     # Get user inputs
-    #loan_data = prompt_user() #! Disable for auto prompting (in development)
-    loan_data = auto_set_prompt()
+    loan_data = prompt_user() #! Disable for auto prompting (in development)
+    #loan_data = auto_set_prompt()
     
     
     #for data in loan_data:
