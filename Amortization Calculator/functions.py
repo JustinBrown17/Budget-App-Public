@@ -1,5 +1,6 @@
 from datetime import datetime
-
+# TODO: finish 2nd ont-time payment logic
+# TODO: finish and fully implement the "monthly" payment into a payment that could be weekly, bi-weekly or monthly
 
 def get_float_input(prompt):
     """
@@ -54,18 +55,29 @@ def prompt_user():
     loan_term_years = int(input("Enter the loan term (in years): "))
     loan_start_date = get_date_input("Enter the start date of the loan (YYYY-MM-DD): ")
 
-    # Get one time payment info
-    one_time_payment = get_float_input("Enter any one-time extra payment (if applicable): ")
+    # Get one time payments info
+    one_time_payment = get_float_input("Enter one-time extra payment (if applicable): ")
 
-    # If user did not make a one time payment do not ask them the date
+    # Additional questions if user make one-time payment
     if one_time_payment != 0:
         one_time_payment_date = get_date_input("Enter the start date for one time payment (YYYY-MM-DD): ")
+        one_time_payment2 = get_float_input("Enter 2nd one-time extra payment (if applicable): ")
+        
+        # If valid 2nd one-time payment, ask for date
+        if one_time_payment2 != 0:
+            one_time_payment2_date = get_date_input("Enter the start date for 2nd one time payment (YYYY-MM-DD): ")
+    
+     # If user did not make a one time payment do not ask them the date or second one-time payment
     else: 
         one_time_payment_date = loan_start_date
     
 
     # Get extra payment info
-    extra_monthly_payment = get_float_input("Enter the recurring extra payment (monthly, quarterly, or yearly): ")
+    extra_monthly_payment = get_float_input("Enter the recurring extra payment: ")
+    extra_payment_frequency = int(input("Enter the extra payment frequency (12 = Monthly, 26 = bi-weekly, 52 = weekly): "))
+    
+    # TODO: add frequency into user_data
+    # TODO: add more payments??
 
     if extra_monthly_payment != 0:
         extra_monthly_payment_start_date = get_date_input("Enter the start date for extra payments (YYYY-MM-DD): ")
