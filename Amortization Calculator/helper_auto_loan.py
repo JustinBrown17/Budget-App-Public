@@ -127,29 +127,3 @@ def find_addl_payment_amount(current_month, loan_data):
         addl_payment += loan_data["Extra Payment Amount"]
         addl_payment += loan_data["Additional Extra Payment Amount"]
         return addl_payment
-    
-
-
-
-
-
-
-"""# Build table and print to console
-table = (x for x in amortization_schedule2(principal, interest_rate, payment_periods))
-print(
-    tabulate(
-        table,
-        headers=["Number", "Amount", "Interest", "Principal", "Balance"],
-        floatfmt=",.2f",
-        numalign="right"
-    )
-)
-# TODO: refactor this code
-# Loop through table to calculate total_cost and cumulative_interest
-for number, amount, interest, principal, balance in amortization_schedule2(principal, interest_rate, payment_periods):
-    total_cost += amount
-    cumulative_interest += interest
-    months = number
-
-    # Update for last payment (overwrites until for loop ends, retrieving the last payment amount)
-    last_payment_amount = amount"""
