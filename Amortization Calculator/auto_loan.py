@@ -1,14 +1,8 @@
 from datetime import timedelta
+from dateutil.relativedelta import relativedelta
 from icecream import ic
 from helper_auto_loan import caclulate_final_payoff_date
 from functions import prompt_user, auto_set_prompt
-"""from ultilities import (
-    principal, interest_rate, loan_start_date, loan_term_years, 
-    payment_periods, original_payoff_date,
-    one_time_payment, one_time_payment_month,
-    extra_monthly_payment, extra_payment_month,
-     addl_extra_payment, addl_extra_payment_month
-)"""
 
 
 def calculate_auto_loan():
@@ -22,12 +16,8 @@ def calculate_auto_loan():
     #    print(loan_data[data])
 
     # Calculate payoff date with all extra payments
-    total_loan_cost, months_to_payoff, cumulative_interest, last_payment_amount = caclulate_final_payoff_date(loan_data)
-    # Calculate payoff date from total months to payoff
-    payoff_date = loan_data["Loan Start Date"] + timedelta(days=months_to_payoff * 30)
-
+    total_loan_cost, months_to_payoff, cumulative_interest, last_payment_amount, payoff_date = caclulate_final_payoff_date(loan_data)
     
-
     # Calculate payoff date without extra payments
     original_payoff_date = loan_data["Loan Start Date"] + timedelta(days=(loan_data["Loan Term Years"]*12) * 30)
 
@@ -46,3 +36,15 @@ def calculate_auto_loan():
 
 if __name__ == "__main__":
     calculate_auto_loan()
+
+
+
+
+"""
+    # Find realative date shift
+    relative_shift = relativedelta(months = months_to_payoff)
+
+
+    # Calculate payoff date from total months to payoff
+    #payoff_date = loan_data["Loan Start Date"] + relative_shift#timedelta(days=months_to_payoff * 30)
+"""
