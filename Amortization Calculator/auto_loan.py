@@ -36,15 +36,3 @@ def calculate_auto_loan():
 
 if __name__ == "__main__":
     calculate_auto_loan()
-
-
-
-
-"""
-    # Find realative date shift
-    relative_shift = relativedelta(months = months_to_payoff)
-
-
-    # Calculate payoff date from total months to payoff
-    #payoff_date = loan_data["Loan Start Date"] + relative_shift#timedelta(days=months_to_payoff * 30)
-"""
